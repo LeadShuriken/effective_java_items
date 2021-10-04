@@ -2,9 +2,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import java.lang.reflect.Constructor;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
@@ -15,17 +13,22 @@ public class PrivateConstructor {
     private static final Logger LOGGER = Logger.getLogger(User.class.getName());
 
     @SuppressWarnings("unchecked")
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static void main(String[] args) {
         // Serailize to file
         Class<User> instanceOne = User.class;
-        ObjectOutput out = new ObjectOutputStream(new FileOutputStream("user.data"));
-        out.writeObject(instanceOne);
-        out.close();
+        Class<User> instanceTwo = null;
+        try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream("user.data"));) {
+            out.writeObject(instanceOne);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Deserailize from file to object
-        ObjectInput in = new ObjectInputStream(new DeleteOnCloseFileInputStream("user.data"));
-        Class<User> instanceTwo = (Class<User>) in.readObject();
-        in.close();
+        try (ObjectInput in = new ObjectInputStream(new DeleteOnCloseFileInputStream("user.data"));) {
+            instanceTwo = (Class<User>) in.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         LOGGER.log(Level.INFO, "Created an {0} instance with hash : {1}",
                 new Object[] { instanceOne, instanceOne.hashCode() });

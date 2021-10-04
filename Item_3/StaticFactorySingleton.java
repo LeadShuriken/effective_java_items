@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.lang.reflect.Constructor;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
@@ -15,18 +14,23 @@ public class StaticFactorySingleton {
 
     private static final Logger LOGGER = Logger.getLogger(User.class.getName());
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
+    public static void main(String[] args) {
 
         // Serailize to file
         User instanceOne = User.getInstance("name_1", "email_1", "country_1");
-        ObjectOutput out = new ObjectOutputStream(new FileOutputStream("user.data"));
-        out.writeObject(instanceOne);
-        out.close();
+        User instanceTwo = null;
+        try (ObjectOutput out = new ObjectOutputStream(new FileOutputStream("user.data"));) {
+            out.writeObject(instanceOne);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Deserailize from file to object
-        ObjectInput in = new ObjectInputStream(new DeleteOnCloseFileInputStream("user.data"));
-        User instanceTwo = (User) in.readObject();
-        in.close();
+        try (ObjectInput in = new ObjectInputStream(new DeleteOnCloseFileInputStream("user.data"));) {
+            instanceTwo = (User) in.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         LOGGER.log(Level.INFO, "Created an {0} instance with hash : {1}",
                 new Object[] { instanceOne, instanceOne.hashCode() });
@@ -94,6 +98,10 @@ public class StaticFactorySingleton {
 
         private Object readResolve() {
             return instance;
+        }
+
+        @Override
+        protected final void finalize() {
         }
     }
 }
