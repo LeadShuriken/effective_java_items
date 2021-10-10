@@ -35,7 +35,6 @@ public class AutoCloseablePref {
                 LOGGER.log(Level.INFO, "Returning User to: {0}", CurrentState.UNLOGGED.toString());
                 state = CurrentState.UNLOGGED;
             }
-
         }
 
         private final State state;
