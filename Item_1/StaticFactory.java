@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 class StaticFactory {
 
-    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(StaticFactory.class.getName());
 
     public static void main(String[] args) {
 

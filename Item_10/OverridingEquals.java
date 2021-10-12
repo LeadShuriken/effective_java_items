@@ -10,7 +10,7 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
 public class OverridingEquals {
-    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(OverridingEquals.class.getName());
 
     public static void main(String[] args) {
         Result result = JUnitCore.runClasses(Tests.class);
@@ -45,8 +45,7 @@ public class OverridingEquals {
 
             User c = (User) o;
 
-            return name.equals(c.name) && email.equals(c.email) && country.equals(c.country)
-                    && country.equals(c.country);
+            return name.equals(c.name) && email.equals(c.email) && country.equals(c.country);
         }
     }
 

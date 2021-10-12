@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 public class Telescoping {
 
-    private static final Logger LOGGER = Logger.getLogger(User.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Telescoping.class.getName());
 
     public static void main(String[] args) {
         new User("name");
