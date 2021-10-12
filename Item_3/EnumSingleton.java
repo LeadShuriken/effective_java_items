@@ -36,14 +36,11 @@ public class EnumSingleton {
         // Not Reflectable
         instanceOne = User.INSTANCE;
         instanceTwo = null;
+
         try {
-            Constructor<?>[] constructors = User.class.getDeclaredConstructors();
-            for (Constructor<?> constructor : constructors) {
-                // Below code will destroy the singleton pattern
-                constructor.setAccessible(true);
-                instanceTwo = (User) constructor.newInstance("name_2", "email_2", "country_2");
-                break;
-            }
+            Constructor<?> constructor = User.class.getDeclaredConstructors()[0];
+            constructor.setAccessible(true);
+            instanceTwo = (User) constructor.newInstance("name_2", "email_2", "country_2");
         } catch (Exception e) {
             e.printStackTrace();
         }

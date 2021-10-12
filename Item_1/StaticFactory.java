@@ -26,7 +26,6 @@ class StaticFactory {
         return b ? Boolean.TRUE : Boolean.FALSE;
     }
 
-    @SuppressWarnings("unused")
     public static class User {
 
         private final String name;

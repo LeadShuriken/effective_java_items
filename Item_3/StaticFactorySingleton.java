@@ -1,5 +1,7 @@
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Set;
+import java.util.TreeSet;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
@@ -15,7 +17,7 @@ public class StaticFactorySingleton {
     private static final Logger LOGGER = Logger.getLogger(User.class.getName());
 
     public static void main(String[] args) {
-
+   
         // Serailize to file
         User instanceOne = User.getInstance("name_1", "email_1", "country_1");
         User instanceTwo = null;
@@ -41,13 +43,9 @@ public class StaticFactorySingleton {
         instanceOne = User.getInstance();
         instanceTwo = null;
         try {
-            Constructor<?>[] constructors = User.class.getDeclaredConstructors();
-            for (Constructor<?> constructor : constructors) {
-                // Below code will destroy the singleton pattern
-                constructor.setAccessible(true);
-                instanceTwo = (User) constructor.newInstance("name_2", "email_2", "country_2");
-                break;
-            }
+            Constructor<?> constructor = User.class.getDeclaredConstructors()[0];
+            constructor.setAccessible(true);
+            instanceTwo = (User) constructor.newInstance("name_2", "email_2", "country_2");
         } catch (Exception e) {
             e.printStackTrace();
         }

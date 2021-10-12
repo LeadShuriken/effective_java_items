@@ -40,13 +40,9 @@ public class PrivateConstructor {
         instanceTwo = null;
 
         try {
-            Constructor<?>[] constructors = User.class.getDeclaredConstructors();
-            for (Constructor<?> constructor : constructors) {
-                // Below code will destroy the singleton pattern
-                constructor.setAccessible(true);
-                instanceTwo = (Class<User>) constructor.newInstance();
-                break;
-            }
+            Constructor<?> constructor = User.class.getDeclaredConstructors()[0];
+            constructor.setAccessible(true);
+            instanceTwo = (Class<User>) constructor.newInstance();
         } catch (Exception e) {
             LOGGER.log(Level.WARNING, "Error: {0}", e.getCause().getMessage());
         }
