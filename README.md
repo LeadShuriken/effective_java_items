@@ -10,3 +10,7 @@ EFFECTIVE JAVA is a collection of test samples for Joshua Bloch's Thi
 EFFECTIVE-JAVA uses a number of open source projects:
 
   * [JAVA8] - JAVA 8 OR HIGHER
+
+## Todo
+
+[JAVA8]: <https://www.oracle.com/java/technologies/javase-jdk11-downloads.html>
