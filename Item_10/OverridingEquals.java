@@ -23,9 +23,9 @@ public class OverridingEquals {
 
     public static class User {
 
-        protected final String name;
-        protected final String email;
-        protected final String country;
+        final String name;
+        final String email;
+        final String country;
 
         public User(String name, String email, String country) {
             this.name = name;

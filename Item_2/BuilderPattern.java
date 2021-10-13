@@ -58,7 +58,7 @@ public class BuilderPattern {
 
             abstract User build();
 
-            protected abstract T self();
+            abstract T self();
         }
     }
 
@@ -83,7 +83,7 @@ public class BuilderPattern {
             }
 
             @Override
-            protected Builder self() {
+            Builder self() {
                 return this;
             }
         }
@@ -117,7 +117,7 @@ public class BuilderPattern {
             }
 
             @Override
-            protected Builder self() {
+            Builder self() {
                 return this;
             }
         }

@@ -22,9 +22,9 @@ public class CloneVsCopyConstructor {
 
     public static class User {
 
-        protected final String name;
-        protected final String email;
-        protected final String country;
+        private final String name;
+        private final String email;
+        private final String country;
 
         public User(String name, String email, String country) {
             this.name = name;

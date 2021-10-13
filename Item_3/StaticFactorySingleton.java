@@ -1,7 +1,5 @@
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Set;
-import java.util.TreeSet;
 
 import java.io.Serializable;
 import java.lang.reflect.Constructor;
@@ -17,7 +15,7 @@ public class StaticFactorySingleton {
     private static final Logger LOGGER = Logger.getLogger(User.class.getName());
 
     public static void main(String[] args) {
-   
+
         // Serailize to file
         User instanceOne = User.getInstance("name_1", "email_1", "country_1");
         User instanceTwo = null;
